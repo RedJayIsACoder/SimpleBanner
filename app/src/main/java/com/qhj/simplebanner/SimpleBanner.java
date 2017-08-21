@@ -96,7 +96,7 @@ public class SimpleBanner extends ViewGroup implements View.OnTouchListener {
                 llDot.addView(dot);
                 dots.add(dot);
                 iv.setScaleType(ImageView.ScaleType.FIT_XY);
-                Glide.with(context).load(urls.get(i)).centerCrop().into(iv);
+                Glide.with(context).load(urls.get(i)).placeholder(R.drawable.android).centerCrop().into(iv);
                 vf.addView(iv);
             }
         }
