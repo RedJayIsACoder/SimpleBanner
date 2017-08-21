@@ -1,0 +1,11 @@
+package com.qhj.simplebanner;
+
+/**
+ * When I wrote this, only God and I understood what I was doing
+ * Now, God only knows
+ * 写这段代码的时候，只有上帝和我知道它是干嘛的
+ * 现在，只有上帝知道
+ * Created by Coder·Qin on 2017/8/21.
+ */
+public class SimpleBannerTest {
+}
