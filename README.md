@@ -2,8 +2,8 @@
   #### 一、在项目的build.gradle文件下添加以下代码:
            allprojects {
                repositories {
-                    jcenter()
-                    maven { url "https://jitpack.io" }
+                   jcenter()
+                   maven { url "https://jitpack.io" }
                }
            } 
   #### 二、在module的build.gradle文件下添加以下代码:
