@@ -31,6 +31,8 @@ public class SimpleBanner extends ViewGroup implements View.OnTouchListener {
     private float x1;
     private float x2;
     private float x3;
+    private float y1;
+    private float y2;
     private int childWidth;
     private int childHeight;
     private List<ImageView> dots;
@@ -67,6 +69,7 @@ public class SimpleBanner extends ViewGroup implements View.OnTouchListener {
         this.context = context;
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SimpleBanner);
         interval = typedArray.getInteger(R.styleable.SimpleBanner_interval, 3000);
+        typedArray.recycle();
         init();
     }
 
@@ -141,6 +144,7 @@ public class SimpleBanner extends ViewGroup implements View.OnTouchListener {
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
                 x1 = event.getX();
+                y1 = event.getY();
                 x3=0.0f;
                 showNext=false;
                 break;
@@ -153,6 +157,7 @@ public class SimpleBanner extends ViewGroup implements View.OnTouchListener {
                 break;
             case MotionEvent.ACTION_UP:
                 x3 = event.getX();
+                y2 = event.getY();
                 if (x1-x3<-300){
                     setFromLeftToRightAnim();
                     vf.showPrevious();
@@ -166,7 +171,7 @@ public class SimpleBanner extends ViewGroup implements View.OnTouchListener {
                 break;
         }
         if (x3!=0.0f){
-            if (x1-x3<20.0f&&x1-x3>-20.0f){
+            if (x1-x3<20.0f&&x1-x3>-20.0f&&y1-y2<20.0f&&y1-y2>-20.0f){
                 if (showNext){
                     return false;
                 }else {
