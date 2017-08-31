@@ -1,6 +1,7 @@
 package com.qhj.simplebanner;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -10,7 +11,9 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ViewFlipper;
+
 import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +34,7 @@ public class SimpleBanner extends ViewGroup implements View.OnTouchListener {
     private int childWidth;
     private int childHeight;
     private List<ImageView> dots;
+    private int interval;//间隔时间
     private boolean showNext;//是否显示下一个view，此标识符是为了防止用户手势滑动一段距离又返回一段距离的引发的bug
     private OnItemClickListener onItemClickListener;
     private Animation.AnimationListener listener=new Animation.AnimationListener() {
@@ -61,6 +65,8 @@ public class SimpleBanner extends ViewGroup implements View.OnTouchListener {
     public SimpleBanner(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SimpleBanner);
+        interval = typedArray.getInteger(R.styleable.SimpleBanner_interval, 3000);
         init();
     }
 
@@ -70,7 +76,7 @@ public class SimpleBanner extends ViewGroup implements View.OnTouchListener {
         vf = (ViewFlipper) findViewById(R.id.vf);
         llDot = (LinearLayout) findViewById(R.id.ll_dot);
         vf.setAutoStart(true);
-        vf.setFlipInterval(3000);
+        vf.setFlipInterval(interval);
         setFromRightToLeftAnim();
         vf.setOnTouchListener(this);
         vf.getInAnimation().setAnimationListener(listener);
