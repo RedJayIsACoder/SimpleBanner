@@ -11,6 +11,6 @@
 	      	   compile 'com.github.RedJayIsACoder:SimpleBanner:1.3.1'
            }
           
-#### 三、控件属性:<br/>
+#### 三、控件属性:
 	  1、interval: 自动播放的时间间隔，默认值为3000
            
