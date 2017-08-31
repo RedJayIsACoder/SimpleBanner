@@ -13,7 +13,8 @@
           
   #### 三、控件属性:
 	  1、interval: 自动播放的时间间隔，默认值为3000
- #### 四、API:
-  	   1、addImgUrl(urls)：需要传入一个包含图片地址的string集合
-	   2、setOnItemClickListener：设置item点击事件
+  #### 四、API:
+  	  1、addImgUrl(urls)：需要传入一个包含图片地址的string集合
+	  
+	  2、setOnItemClickListener：设置item点击事件
            
