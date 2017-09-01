@@ -10,8 +10,12 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
+
 import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +30,10 @@ public class SimpleBanner extends ViewGroup implements View.OnTouchListener {
     private Context context;
     private ViewFlipper vf;
     private LinearLayout llDot;
+    private RelativeLayout rlTitle;
+    private TextView tvTitle;
+    private TextView tvTitleCurrentNum;
+    private TextView tvTitleTotalNum;
     private float x1;
     private float x2;
     private float x3;
@@ -34,6 +42,7 @@ public class SimpleBanner extends ViewGroup implements View.OnTouchListener {
     private int childWidth;
     private int childHeight;
     private List<ImageView> dots;
+    private List<String> titles;
     private int interval;//间隔时间
     private boolean showNext;//是否显示下一个view，此标识符是为了防止用户手势滑动一段距离又返回一段距离的引发的bug
     private OnItemClickListener onItemClickListener;
@@ -42,7 +51,14 @@ public class SimpleBanner extends ViewGroup implements View.OnTouchListener {
         public void onAnimationStart(Animation animation) {
             for (int i = 0; i <dots.size() ; i++) {
                 if (i==vf.getDisplayedChild()){
-                    dots.get(i).setBackgroundResource(R.drawable.dot_red);
+                    if (titles!=null&&titles.size()>=dots.size()){
+                        tvTitle.setText(titles.get(i));
+                        tvTitleCurrentNum.setText((i+1)+"");
+                    }else {
+                        dots.get(i).setBackgroundResource(R.drawable.dot_red);
+                        rlTitle.setVisibility(GONE);
+                        llDot.setVisibility(VISIBLE);
+                    }
                 }else {
                     dots.get(i).setBackgroundResource(R.drawable.dot_gray);
                 }
@@ -72,15 +88,31 @@ public class SimpleBanner extends ViewGroup implements View.OnTouchListener {
     }
 
     private void init() {
-        dots = new ArrayList<>();
         LayoutInflater.from(context).inflate(R.layout.layout_simple_banner,this,true);
+        dots = new ArrayList<>();
         vf = (ViewFlipper) findViewById(R.id.vf);
         llDot = (LinearLayout) findViewById(R.id.ll_dot);
+        rlTitle = (RelativeLayout) findViewById(R.id.rl_title);
+        tvTitle = (TextView) findViewById(R.id.tv_title);
+        tvTitleCurrentNum = (TextView) findViewById(R.id.tv_title_current_num);
+        tvTitleTotalNum = (TextView) findViewById(R.id.tv_title_total_num);
         vf.setAutoStart(true);
         vf.setFlipInterval(interval);
         setFromRightToLeftAnim();
         vf.setOnTouchListener(this);
         vf.getInAnimation().setAnimationListener(listener);
+    }
+
+    public void addImgTitle(List<String> imgTitles){
+        titles = new ArrayList<>();
+        if (imgTitles.size()>0){
+            titles.addAll(imgTitles);
+            tvTitle.setText(titles.get(0));
+            tvTitleCurrentNum.setText("1");
+            tvTitleTotalNum.setText(titles.size()+"");
+            rlTitle.setVisibility(VISIBLE);
+            llDot.setVisibility(GONE);
+        }
     }
 
     public void addImgUrl(List<String> urls){
