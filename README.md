@@ -25,8 +25,8 @@
 	     调用此方法会在控件的底部展示标题栏，并以数字索引（例：1/3）的方式替换默认的圆点索引。
 	     如无需展示标题栏可不调用，将以圆点形式展示索引。
 	     
->>![数字索引](https://github.com/RedJayIsACoder/SimpleBanner/blob/master/image/SimpleBanner02.jpg)
->>![圆点索引](https://github.com/RedJayIsACoder/SimpleBanner/blob/master/image/SimpleBanner03.jpg)
+>>>![数字索引](https://github.com/RedJayIsACoder/SimpleBanner/blob/master/image/SimpleBanner02.jpg)
+>>>![圆点索引](https://github.com/RedJayIsACoder/SimpleBanner/blob/master/image/SimpleBanner03.jpg)
 	     
 	  3、setOnItemClickListener(OnItemClickListener listener)：设置item点击事件
            
