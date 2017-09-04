@@ -1,7 +1,9 @@
 package com.qhj.simplebanner;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -115,7 +117,7 @@ public class SimpleBanner extends ViewGroup implements View.OnTouchListener {
         }
     }
 
-    public void addImgUrl(List<String> urls){
+    public void addImgUrl(List<String> urls,int defaultImgResId){
         if (urls!=null&&urls.size()>0){
             if (dots.size()>0){
                 dots.clear();
@@ -124,7 +126,7 @@ public class SimpleBanner extends ViewGroup implements View.OnTouchListener {
             for (int i = 0; i < urls.size(); i++) {
                 ImageView iv=new ImageView(context);
                 ImageView dot=new ImageView(context);
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
                 params.setMargins(2,0,2,0);
                 dot.setLayoutParams(params);
                 if (i==0){
@@ -135,7 +137,17 @@ public class SimpleBanner extends ViewGroup implements View.OnTouchListener {
                 llDot.addView(dot);
                 dots.add(dot);
                 iv.setScaleType(ImageView.ScaleType.FIT_XY);
-                Glide.with(context).load(urls.get(i)).placeholder(R.drawable.android).centerCrop().into(iv);
+                if (defaultImgResId==0){
+                    Glide.with(context).load(urls.get(i)).centerCrop().into(iv);
+                }else {
+                    try {
+                        Drawable defaultImg = getResources().getDrawable(defaultImgResId);
+                        Glide.with(context).load(urls.get(i)).placeholder(defaultImg).centerCrop().into(iv);
+                    } catch (Resources.NotFoundException e) {
+                        e.printStackTrace();
+                        Glide.with(context).load(urls.get(i)).placeholder(R.drawable.android).centerCrop().into(iv);
+                    }
+                }
                 vf.addView(iv);
             }
         }
