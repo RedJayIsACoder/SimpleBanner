@@ -14,7 +14,8 @@
   #### 三、控件属性:
 	  1、interval: 自动播放的时间间隔，默认值为3000
 	  
-	 ![控件属性](https://github.com/RedJayIsACoder/SimpleBanner/blob/master/image/SimpleBanner01.jpg)
+![控件属性](https://github.com/RedJayIsACoder/SimpleBanner/blob/master/image/SimpleBanner01.jpg)
+
   #### 四、API:
   	  1、addImgUrl(List<String> urls,int defaultImgResId)：
 	     需要传入一个包含图片地址的string集合以及默认图片的资源id，如不需要展示默认图片，defaultImgResId传0即可。
