@@ -12,7 +12,7 @@
            }
           
   #### 三、控件属性:
-	  <b>1、interval:</b> 自动播放的时间间隔，默认值为3000
+	  1、interval: 自动播放的时间间隔，默认值为3000
 >>>![控件属性](https://github.com/RedJayIsACoder/SimpleBanner/blob/master/image/SimpleBanner01.jpg)
 
 
