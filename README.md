@@ -8,7 +8,7 @@
            } 
   #### 二、在module的build.gradle文件下添加以下代码:
            dependencies {
-	      	   compile 'com.github.RedJayIsACoder:SimpleBanner:1.3.2'
+	      	   compile 'com.github.RedJayIsACoder:SimpleBanner:1.6.1'
            }
           
   #### 三、控件属性:
